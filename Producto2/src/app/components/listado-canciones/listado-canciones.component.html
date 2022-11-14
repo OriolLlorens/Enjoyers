@@ -1,0 +1,44 @@
+ <h3>Lista de reproducción</h3> 
+
+<!-- Filtro -->
+<mat-form-field class="form">
+  
+  <mat-label><strong>&nbsp;&nbsp;</strong></mat-label>
+  <input matInput type="text" 
+         name="input" 
+         class="busqueda" 
+         placeholder="Título o artista..." 
+         [(ngModel)]="cancionFiltrada"/>
+</mat-form-field>
+
+<table mat-table  class="list">
+
+   
+  <mat-list>
+    <tr class="list-item headerlist">
+      <th>Track</th>
+      <th>Artista</th>
+      <th>Title</th>
+      <th>Time</th>
+    </tr>
+  
+  <mat-selection-list [multiple]="false" *ngFor="let song of songs | filtro: cancionFiltrada;
+        let i = index" 
+        (click)="onOpenFile(song, i)" 
+        (click)="onSelect(song)">
+  
+      <div class="list-item hovered">
+    
+        <div class="item track">{{song.track}}</div>
+        <div class="item thumb"><img src={{song.thumbnails}} class="thumb"></div>
+        <div class="item text">{{song.title}}</div>
+        <div class="item text">{{song.time}}</div>
+
+      </div>
+
+  </mat-selection-list>
+  </mat-list>
+
+
+  
+</table>
